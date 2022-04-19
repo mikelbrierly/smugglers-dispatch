@@ -1,13 +1,20 @@
+import React from "react";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./layout.module.scss";
 import utilStyles from "../styles/utils.module.scss";
-import Link from "next/link";
 
 const name = "The Smuggler's Dispatch";
 export const siteTitle = "The holonet home of the smuggler's dispatch podcast";
 
-export default function Layout({ children, home }) {
+export default function Layout({
+  children,
+  home,
+}: {
+  children: React.ReactNode;
+  home?: boolean;
+}) {
   return (
     <div className={styles.container}>
       <Head>

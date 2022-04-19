@@ -1,0 +1,43 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb",
+    "airbnb-typescript",
+    "airbnb/hooks"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
+  // "off" means 0 (turns the rule off completely)
+  // "warn" means 1 (turns the rule on but won't make the linter fail)
+  // "error" means 2 (turns the rule on and will make the linter fail)
+  "rules": {
+    "no-console": 1,
+    "quotes": ["error", "double"],
+    "@typescript-eslint/quotes": 0,
+    // suppress errors for missing 'import React' in files
+    "react/react-in-jsx-scope": 0,
+    // allow tsx syntax in ts files
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
+    // disables no href in <a> tag, since Link component passes it down
+    "jsx-a11y/anchor-is-valid": 0,
+    // prevents error from not setting a default value on an optional prop
+    "react/require-default-props": 0,
+    // prevents error from else if blocks being verbose. I think it's easier to read with this rule turned off
+    "no-else-return": 0,
+    // allows props spreading
+    "react/jsx-props-no-spreading": 0
+  }
+}

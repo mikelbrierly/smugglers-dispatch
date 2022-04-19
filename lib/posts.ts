@@ -23,11 +23,11 @@ export function getSortedPostsData() {
     // Combine the data with the id
     return {
       id,
-      ...matterResult.data,
+      ...(matterResult.data as { date: string; title: string }),
     };
   });
   // Sort posts by date
-  return allPostsData.sort(({ date: a }, { date: b }) => {
+  return allPostsData.sort((a, b) => {
     if (a < b) {
       return 1;
     } else if (a > b) {
@@ -55,13 +55,11 @@ export function getAllPostIds() {
   //   }
   // ]
 
-  return fileNames.map((fileName) => {
-    return {
-      params: {
-        id: fileName.replace(/\.md$/, ""),
-      },
-    };
-  });
+  return fileNames.map((fileName) => ({
+    params: {
+      id: fileName.replace(/\.md$/, ""),
+    },
+  }));
 }
 
 export async function getPostData(id) {
@@ -71,7 +69,7 @@ export async function getPostData(id) {
   // use gray-matter to parse the metadata section
   const matterResult = matter(fileContents);
 
-  //use remark to convert md to html string
+  // use remark to convert md to html string
   const processedContent = await remark()
     .use(html)
     .process(matterResult.content);

@@ -3,10 +3,11 @@ import Layout from "../components/layout";
 import utilStyles from "../styles/utils.module.scss";
 import Link from "next/link";
 import Image from "next/image";
+import { GetStaticProps } from "next";
 import { getSortedPostsData } from "../lib/posts";
 
 // getStaticProps is only run on the server side
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = () => {
   const allPostsData = getSortedPostsData();
 
   // The value of the `props` key will be
@@ -16,7 +17,7 @@ export async function getStaticProps() {
       allPostsData,
     },
   };
-}
+};
 
 export default function Home({ allPostsData }) {
   return (

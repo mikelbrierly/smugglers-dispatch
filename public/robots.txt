@@ -1,0 +1,7 @@
+# Block all crawlers for /secretsnotindexed
+User-agent: *
+Disallow: /secretsnotindexed
+
+# Allow all crawlers
+User-agent: *
+Allow: /
